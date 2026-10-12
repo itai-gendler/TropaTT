@@ -1,0 +1,10 @@
+scenarioKinds:
+  - id: primary
+    name: Primary
+    description: Established successful operation in its supported context.
+  - id: validation
+    name: Validation
+    description: Distinguished refusal or invalid input with its observable outcome.
+  - id: edge
+    name: Edge
+    description: Established conflict, retry, partial processing or dependency failure.

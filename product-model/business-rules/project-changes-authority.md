@@ -1,0 +1,37 @@
+---
+appliesTo:
+  - type: "entity"
+    id: "project"
+    effect: "changes"
+permits:
+  - configuredBy: "role-permission"
+references:
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/config/routes.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/system/library/service/AuthzService.php#permissionsForUser"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/controller/project/ProjectController.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/system/library/service/ProjectService.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/model/project/ProjectRepository.php"
+---
+
+# Only people authorized for the requested operation change project records
+
+The applicable person is resolved from the authenticated Account; an AI agent is resolved through the person who connects it. Role permission configuration supplies that person's runtime permission codes. Operation dispatch below chooses the required codes and preserves independent route, object, workspace, ownership and external-persona checks as AND conditions. Alternative grants within the stated check are OR. Effective Root bypasses only the named checks; API-client and API-key narrowing applies independently and removes effective Root when scoped. No stored permission entry by itself grants access to a foreign object.
+
+## Operation dispatch
+
+- Create project, Edit project, Change project status, Archive project, Assign project manager, Remove project manager, Assign project team, Remove project team, Link project counterparty, Unlink project counterparty: internal project.manage; existing-object access for mutation.
+
+Every mapped metadata, status, archive, manager/team assignment and Counterparty-link operation requires internal project.manage and reachable existing Project. The completion check is evaluated at status change, not as a permanent invariant. Referenced people, teams and business records must satisfy the inspected lookups.
+
+For authenticated route checks, effective Root grants the implemented bypass; otherwise hasAnyPermissions compares the dispatched required codes literally against AuthzService's trimmed/deduplicated codes. A list containing '*' normalizes to ['*'], but is not by itself an additional route Root bypass. A restricted empty explicit list denies without falling back to Account Role permissions. Object ACL checks that inspect raw codes keep their own wildcard behavior. Public token/credential operations and authenticated operations with no route code retain the explicitly stated no-code path; this delegation does not invent a Role-code requirement for them.
+

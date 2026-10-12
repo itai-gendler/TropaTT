@@ -1,0 +1,37 @@
+---
+appliesTo:
+  - type: "entity"
+    id: "page-permission"
+    effect: "reads"
+permits:
+  - configuredBy: "role-permission"
+references:
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/config/routes.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/system/library/service/AuthzService.php#permissionsForUser"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/controller/knowledge/KnowledgeController.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/model/knowledge/KnowledgeRepository.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/system/library/service/KnowledgePageVersionService.php"
+---
+
+# Only people authorized for the requested operation read page permission records
+
+The applicable person is resolved from the authenticated Account; an AI agent is resolved through the person who connects it. Role permission configuration supplies that person's runtime permission codes. Operation dispatch below chooses the required codes and preserves independent route, object, workspace, ownership and external-persona checks as AND conditions. Alternative grants within the stated check are OR. Effective Root bypasses only the named checks; API-client and API-key narrowing applies independently and removes effective Root when scoped. No stored permission entry by itself grants access to a foreign object.
+
+## Operation dispatch
+
+- Browse page permissions, Add page permission, Remove page permission: knowledge.permission_manage AND page owner or applicable Root/wildcard/knowledge.admin.
+
+knowledge.permission_manage (or the effective Root route bypass) AND (page owner OR applicable effective Root, wildcard or knowledge.admin). Merely readable/editable page access does not permit ACL-entry listing.
+
+For authenticated route checks, effective Root grants the implemented bypass; otherwise hasAnyPermissions compares the dispatched required codes literally against AuthzService's trimmed/deduplicated codes. A list containing '*' normalizes to ['*'], but is not by itself an additional route Root bypass. A restricted empty explicit list denies without falling back to Account Role permissions. Object ACL checks that inspect raw codes keep their own wildcard behavior. Public token/credential operations and authenticated operations with no route code retain the explicitly stated no-code path; this delegation does not invent a Role-code requirement for them.
+

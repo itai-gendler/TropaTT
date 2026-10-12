@@ -1,0 +1,97 @@
+---
+entities:
+  - entity: "task"
+    shows:
+      - "Key"
+      - "Title"
+      - "Description"
+      - "Status"
+      - "Priority"
+      - "Activity"
+      - "Start date"
+      - "Due date"
+      - "Revision"
+      - "Archived at"
+      - "Deleted at"
+      - "Creator"
+      - "Assignee"
+      - "Project"
+      - "Counterparty"
+      - "Parent"
+      - "Cost rate"
+      - "Bill rate"
+      - "Payout rate"
+      - "Currency"
+  - entity: "subtask"
+    shows:
+      - "Title"
+      - "Description"
+      - "Status"
+      - "Priority"
+      - "Due date"
+      - "Order"
+      - "Parent"
+      - "Project"
+      - "Assignee"
+      - "Deleted at"
+  - entity: "task-comment"
+    shows:
+      - "Body"
+      - "Visibility"
+      - "Author"
+      - "Created at"
+      - "Edited at"
+  - entity: "task-attachment"
+    shows:
+      - "Name"
+      - "Type"
+      - "Size"
+      - "Visibility"
+      - "Uploader"
+      - "Quarantined"
+      - "Deleted at"
+  - entity: "task-activity"
+    shows:
+      - "Actor"
+      - "Event"
+      - "Field"
+      - "Previous value"
+      - "New value"
+      - "Created at"
+  - entity: "task-relation"
+    shows:
+      - "Source"
+      - "Target"
+      - "Kind"
+      - "Note"
+      - "Creator"
+      - "Created at"
+  - entity: "checklist"
+    shows:
+      - "Title"
+      - "Order"
+  - entity: "checklist-item"
+    shows:
+      - "Text"
+      - "Order"
+      - "Completed"
+  - entity: "task-tag-assignment"
+    shows:
+      - "Task"
+      - "Tag"
+  - entity: "tag"
+    shows:
+      - "Title"
+      - "Organization"
+references:
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/config/routes.php"
+  - kind: "code"
+    role: "implementation"
+    target: "upload/api/system/library/app.php"
+---
+
+# Task record
+
+Selected work and its creation, ordinary edit, dedicated movement and addressed collaboration outcomes.

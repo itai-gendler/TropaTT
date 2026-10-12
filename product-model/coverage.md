@@ -1,0 +1,222 @@
+---
+scope: "Inspected core Web, REST and task/comment/lease MCP work-platform code at e61d0bc31c38dcee6d4c2f69beb029c29418a051."
+method: "Static inspection of pinned tracked source, persistence, dispatch, controls and installed mapping references."
+covered:
+  - description: "Entry registries and central dispatch for the mapped Web, REST and MCP operations."
+    paths:
+      - "upload/web/config/routes.php"
+      - "upload/api/config/routes.php"
+      - "upload/api/config/mcp_permissions.php"
+      - "upload/api/system/library/app.php"
+      - "upload/api/controller/common/BaseController.php"
+  - description: "Authentication, conditional recovery, own-profile and session handlers; factor continuation only."
+    paths:
+      - "upload/api/controller/auth/AuthController.php"
+      - "upload/api/controller/security/ProfileController.php"
+      - "upload/api/controller/security/SessionController.php"
+      - "upload/api/system/library/service/AuthService.php"
+      - "upload/api/system/library/service/UserProfileService.php"
+      - "upload/api/system/library/service/SessionService.php"
+      - "upload/api/system/library/service/PasswordResetService.php"
+      - "upload/api/system/library/security/PasswordPolicy.php"
+  - description: "Role CRUD, permission replacement and addressed user-role update code."
+    paths:
+      - "upload/api/system/library/service/RoleService.php"
+      - "upload/api/system/library/service/PermissionService.php"
+      - "upload/api/controller/user/UserController.php"
+      - "upload/api/system/library/service/UserService.php"
+  - description: "Organization availability, management, member and invitation handlers with workspace resolution."
+    paths:
+      - "upload/api/system/library/service/OrganizationService.php"
+      - "upload/api/system/library/service/OrganizationContextService.php"
+      - "upload/api/system/library/service/InvitationService.php"
+  - description: "Addressed project collection, detail, ordinary changes, completion and archive code."
+    paths:
+      - "upload/api/controller/project/ProjectController.php"
+      - "upload/api/system/library/service/ProjectService.php"
+      - "upload/api/model/project/ProjectRepository.php"
+  - description: "Core Task collection, detail, ordinary field writes, bulk processing, stable keys, board and dedicated movement code."
+    paths:
+      - "upload/api/controller/task/TaskController.php"
+      - "upload/api/system/library/service/TaskService.php"
+      - "upload/api/model/task/TaskRepository.php"
+      - "upload/api/system/library/support/TaskStatusSemantics.php"
+  - description: "Task response-replay hashing, remembering and repository schema; MCP delegated request context."
+    paths:
+      - "upload/api/system/library/service/IdempotencyService.php"
+      - "upload/api/model/common/IdempotencyRepository.php"
+      - "upload/web/install/mysql-schema.snapshot.sql"
+      - "upload/api/controller/mcp/McpController.php"
+  - description: "Canonical and custom Task status semantics and addressed dictionary mutation/remap code."
+    paths:
+      - "upload/api/controller/status/StatusController.php"
+      - "upload/api/system/library/service/StatusService.php"
+  - description: "Subtask contract and its separate repository write path."
+    paths:
+      - "upload/api/controller/subtask/SubtaskController.php"
+      - "upload/api/system/library/service/SubtaskService.php"
+      - "upload/api/model/subtask/SubtaskRepository.php"
+  - description: "Addressed checklist, comment, typed-relation, Task tag and attachment code."
+    paths:
+      - "upload/api/controller/checklist/ChecklistController.php"
+      - "upload/api/system/library/service/ChecklistService.php"
+      - "upload/api/system/library/service/CommentService.php"
+      - "upload/api/controller/task/TaskRelationController.php"
+      - "upload/api/system/library/service/TaskRelationService.php"
+      - "upload/api/controller/file/FileController.php"
+      - "upload/api/system/library/service/FileService.php"
+  - description: "Task/comment/lease MCP handlers and connected-person credential narrowing; other tools excluded from this covered subset."
+    paths:
+      - "upload/api/controller/mcp/McpController.php"
+      - "upload/api/system/library/service/AgentLeaseService.php"
+      - "upload/api/config/mcp_permissions.php"
+      - "upload/api/system/library/service/ApiClientService.php"
+      - "upload/api/system/library/service/AuthzService.php"
+  - description: "Time-entry CRUD, analytics/earnings, rate resolution, cards/lines/assignments, period registry and financial response filtering code."
+    paths:
+      - "upload/api/controller/worklog/WorklogController.php"
+      - "upload/api/system/library/service/WorklogService.php"
+      - "upload/api/system/library/service/EarningsService.php"
+      - "upload/api/system/library/security/FinancialFieldPolicy.php"
+      - "upload/api/controller/rate/RateCardController.php"
+      - "upload/api/controller/rate/RateController.php"
+      - "upload/api/system/library/service/RateResolutionService.php"
+      - "upload/api/system/library/container.php"
+  - description: "Addressed Client, Counterparty, Company and Contact CRUD and linked external-access side effects."
+    paths:
+      - "upload/api/system/library/service/ClientService.php"
+      - "upload/api/system/library/service/CompanyService.php"
+      - "upload/api/system/library/service/CounterpartyService.php"
+      - "upload/api/system/library/service/ContactService.php"
+  - description: "Conversation browse/create, message retry/edit/remove and archive/restore handlers; limited chat-family contract."
+    paths:
+      - "upload/api/system/library/service/ChatService.php"
+      - "upload/api/controller/chat/ChatController.php"
+  - description: "Space/page collection and addressed writes, version restoration and permission-entry operations."
+    paths:
+      - "upload/api/controller/knowledge/KnowledgeController.php"
+      - "upload/api/model/knowledge/KnowledgeRepository.php"
+      - "upload/api/system/library/service/KnowledgePageVersionService.php"
+      - "upload/api/controller/knowledge/KnowledgePageVersionController.php"
+  - description: "Calendar CRUD, attendance, UTC and source/privacy selection code."
+    paths:
+      - "upload/api/controller/calendar/CalendarController.php"
+      - "upload/api/system/library/service/CalendarService.php"
+      - "upload/api/model/calendar/CalendarEventRepository.php"
+  - description: "Intake collection, ordinary writes, transition/conversion and activity code."
+    paths:
+      - "upload/api/system/library/service/IntakeItemService.php"
+      - "upload/api/controller/intake/IntakeItemController.php"
+      - "upload/api/model/intake/IntakeItemRepository.php"
+  - description: "Notification recipient listing, manual creation, read-state and traced producing hooks."
+    paths:
+      - "upload/api/system/library/service/NotificationService.php"
+      - "upload/api/controller/notification/NotificationController.php"
+  - description: "Team and Department directory listing/detail code only."
+    paths:
+      - "upload/api/system/library/service/TeamService.php"
+      - "upload/api/system/library/service/DepartmentService.php"
+  - description: "Browser controls for the named screens, offered project resolution and four cross-capability hand-offs."
+    paths:
+      - "upload/web/assets/js/br1.js"
+      - "upload/web/assets/js/page-api-bindings.js"
+      - "upload/web/assets/js/intake.js"
+      - "upload/web/view/template/page/"
+  - description: "Shipped core locale code supporting the language declaration."
+    paths:
+      - "upload/api/language/en-gb/"
+      - "upload/api/language/ru-ru/"
+      - "upload/api/language/zh-cn/"
+      - "upload/web/language/en-gb.php"
+      - "upload/web/language/ru-ru.php"
+      - "upload/web/language/zh-cn.php"
+exclusions:
+  - description: "CI/test harnesses and bundled presentation assets without independent Product contracts."
+    paths:
+      - ".github/workflows/"
+      - ".github/assets/"
+      - "api/tests/"
+unmapped:
+  - description: "Remaining general user administration, impersonation, avatar/preferences, two-factor setup and external/executor access administration."
+    paths:
+      - "upload/api/controller/user/"
+      - "upload/api/controller/security/"
+      - "upload/api/controller/external/"
+      - "upload/api/system/library/service/UserService.php"
+      - "upload/api/system/library/service/UserProfileService.php"
+  - description: "Team/Department CRUD and membership administration beyond addressed directory facts."
+    paths:
+      - "upload/api/controller/team/"
+      - "upload/api/controller/department/"
+      - "upload/api/system/library/service/TeamService.php"
+      - "upload/api/system/library/service/DepartmentService.php"
+  - description: "Remaining Task/Project estimates, legacy dependencies, approvals, reminders/recurrence/SLA/workflow, templates/custom fields/views, cycles/modules and planning code."
+    paths:
+      - "upload/api/controller/task/"
+      - "upload/api/controller/project/"
+      - "upload/api/controller/estimate/"
+      - "upload/api/controller/approval/"
+      - "upload/api/controller/recurring/"
+      - "upload/api/controller/sla/"
+      - "upload/api/controller/workflow/"
+      - "upload/api/controller/view/"
+  - description: "Remaining Tag lifecycle, non-Task status scopes, recycle-bin recovery/purge and file remediation."
+    paths:
+      - "upload/api/controller/tag/"
+      - "upload/api/controller/status/"
+      - "upload/api/controller/recycle_bin/"
+      - "upload/api/controller/file/"
+  - description: "Other chat-family and participant-administration code."
+    paths:
+      - "upload/api/controller/chat/"
+      - "upload/api/system/library/service/ChatService.php"
+  - description: "Remaining Knowledge drafts/autosave, comments/social links, tags/files/templates/import/export/reindex, scheduled review/purge and Space permission writes."
+    paths:
+      - "upload/api/controller/knowledge/"
+      - "upload/api/model/knowledge/"
+      - "upload/api/system/library/service/KnowledgePageVersionService.php"
+  - description: "Notification delivery/reminder administration and external-calendar synchronization code."
+    paths:
+      - "upload/api/controller/notification/"
+      - "upload/api/controller/calendar/"
+      - "upload/api/system/library/service/NotificationService.php"
+      - "upload/web/cron.php"
+  - description: "Remaining MCP tools/resources/profiles and AI/Ideas generation, memory/orchestration and product-analysis code."
+    paths:
+      - "upload/api/controller/mcp/"
+      - "upload/api/controller/ai/"
+      - "upload/api/controller/idea/"
+      - "upload/api/config/mcp_toolsets.php"
+  - description: "Operational installer/updater/jobs, module hosting, backup, import/export/webhooks and product-bearing extension examples."
+    paths:
+      - "upload/web/install.php"
+      - "upload/web/cron.php"
+      - "upload/api/controller/system/"
+      - "upload/api/controller/import/"
+      - "upload/api/controller/export/"
+      - "docs_modules/examples/modules/"
+limitations:
+  - description: "Configured Role/Client/Key authorization and ACL dispatch depend on retained customer configuration and the authenticated request binding."
+    paths:
+      - "upload/api/system/library/service/AuthzService.php"
+      - "upload/api/system/library/service/ApiClientService.php"
+      - "upload/api/model/permission/"
+      - "upload/api/model/knowledge/KnowledgeRepository.php"
+  - description: "Unscoped status queries cannot establish organization precedence for duplicate configured codes."
+    paths:
+      - "upload/api/system/library/support/TaskStatusSemantics.php"
+      - "upload/api/system/library/service/TaskBoardService.php"
+      - "upload/api/system/library/service/TaskService.php"
+  - description: "Optional rate-line policy registration changes disclosure; its injected policy receives an envelope rather than the contained person."
+    paths:
+      - "upload/api/controller/rate/RateCardController.php"
+      - "upload/api/system/library/container.php"
+  - description: "Deployed schemas, file bytes, providers/modules and notification delivery cannot be established from their conditional integration code."
+    paths:
+      - "upload/api/config/"
+      - "upload/api/system/library/service/FileService.php"
+      - "upload/api/system/library/service/NotificationService.php"
+      - "upload/api/system/library/service/PasswordResetService.php"
+---
+
+# Coverage

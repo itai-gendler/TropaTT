@@ -7,6 +7,12 @@ authors:
   - name: Anton Barinov
 license: AGPL-3.0
 languages: [en-GB, ru-RU, zh-CN]
+limitations:
+  - Records stay on the operator's own server; TropaTT does not sync them to any cloud.
+  - Built-in AI uses provider keys the operator supplies, and its suggestions change records only after a person reviews them.
+  - Connected agents act with no more authority than the person they act for.
+  - External observers and executors reach only the customer context and Projects they are linked to.
+  - A stock installation has no modules; store connectors, migrations and calendar sync are installed separately from the module marketplace.
 references:
   - kind: doc
     role: context
